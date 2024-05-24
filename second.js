@@ -228,3 +228,16 @@ window.addEventListener('resize', () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 });
+
+
+
+
+
+
+document.getElementById('toggleSwitch').addEventListener('change', function() {
+  if (this.checked) {
+      document.body.style.backgroundImage = 'url("../meta/main_bg.png")';
+  } else {
+      document.body.style.background = 'black';
+  }
+});
