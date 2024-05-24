@@ -18,35 +18,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no, minimal-ui">
 </head>
 <body>
+  <canvas id="firefliesCanvas" style="position: absolute;"></canvas>
   <div id="loader-wrapper">
     
     <div>Loading...</div>
 </div>
-  <div class="container"  id="content">
+  <div class="container"  id="content" >
  
     <div class="heading">
       <div class="user">
-        <img class="userAvatar" src="not.jpg" alt="" >
+        <img class="userAvatar" src="meta/not.jpg" alt="" >
         <div class="for-flex">
-          <h4 class="user-name"></h3>
-          <h4 class="last-name"></h3>
+          <h4 class="user-name">Nurbolot</h3>
+          <h4 class="last-name">Namazbekov</h3>
           
         </div>
       </div>
       <div class="scores-container">
         <div class="score-container" style="font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">0</div>
         
-        <div class="record" onclick="togglePopup(3)" style="position: absolute ; cursor: pointer; justify-content: center; display: flex;  width: 60%; margin-top: 10px;  " >
-          <p style="font-size: 10px; margin-right: 2px;  ">your record:</p>
-          <div class="best-number"></div> >
-          
-        </div>
+        
         
       </div>
     </div>
 
     
-  
+   <div class="record" onclick="togglePopup(3)" >
+    <div>best:</div>
+
+    <div class="best-number"></div> 
+    
+  </div>
 
     <div class="game-container" id="game-container">
       <div class="coin" id="coin" style="display: none;"></div>
@@ -95,7 +97,7 @@
     </div>
 
     <div class="above-game">
-      <a class="restart-button" id="game-button">New Game</a>
+      
       <div id="timer-display" style="display: none;"></div>
       <div id="attempts-display" style="display: none;"></div>
       <div id="timer"></div>
@@ -113,7 +115,7 @@
           <img src="meta/stats.png" alt="Изображение 2">
           stats
         </button>
-        
+        <a class="restart-button" id="game-button">New Game</a>
       </div>
       <div class="m-overlay" id="m-overlay" onclick="closePopup()"></div>
       <div class="m-popup" id="m-popup">

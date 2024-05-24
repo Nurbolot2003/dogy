@@ -18,23 +18,24 @@ document.addEventListener("DOMContentLoaded", function() {
       const userName = user.first_name;
       const userLastName = user.last_name;
       const userPhotoUrl = user.photo_url;
-
+      const userId = user.id;
+  
       // Update HTML elements with user data
-      document.querySelector('.user-name').innerText = userName;
-      document.querySelector('.last-name').innerText = userLastName;
+      document.querySelector('.user-name').innerText =`${userName} ${userLastName}` ;
+      document.querySelector('.last-name').innerText = userId;
 
       if (userPhotoUrl) {
           const userAvatar = document.querySelector('.userAvatar');
           userAvatar.src = userPhotoUrl;
           userAvatar.style.display = 'block';
       } else {
-          document.querySelector('.userAvatar').style.display = 'none';
+          document.querySelector('.userAvatar').src = 'meta/not.jpg';
       }
   } else {
-      // Handle the case when user information is not available
-      document.querySelector('.user-name').innerText = 'User information not available';
-      document.querySelector('.last-name').innerText = '';
-      document.querySelector('.userAvatar').style.display = 'none';
+      // Handle the case when user information is not availabl
+      document.querySelector('.user-name').innerText ="name" ;
+      document.querySelector('.last-name').innerText = 'userId';
+      
   }
   updateFromLocalStorage();
   if (remainingTime > 0) {
@@ -169,3 +170,61 @@ function pad(number, length) {
 if (remainingTime > 0) {
   startTimer();
 }*/
+const canvas = document.getElementById('firefliesCanvas');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+class Firefly {
+    constructor() {
+        this.reset();
+    }
+
+    reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2;
+        this.speedX = (Math.random() * 1 - 0.5) * 2;
+        this.speedY = (Math.random() * 1 - 0.5) * 2;
+        this.alpha = Math.random();
+    }
+
+    update() {
+        this.x += this.speedX/3;
+        this.y += this.speedY /3;
+
+        if (this.x > canvas.width || this.x < 0 || this.y > canvas.height || this.y < 0) {
+            this.reset();
+        }
+    }
+
+    draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
+        ctx.fill();
+    }
+}
+
+const fireflies = [];
+const numberOfFireflies = 50;
+
+for (let i = 0; i < numberOfFireflies; i++) {
+    fireflies.push(new Firefly());
+}
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    fireflies.forEach(firefly => {
+        firefly.update();
+        firefly.draw();
+    });
+    requestAnimationFrame(animate);
+}
+
+animate();
+
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});

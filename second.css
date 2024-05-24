@@ -23,7 +23,7 @@
 #content {
   display: none;
   text-align: center;
-  padding: 20px;
+ 
   opacity: 0;
   transition: opacity 1s ease-in-out;
 }
@@ -39,9 +39,11 @@
 
   .m-btn-container {
     display: flex;
-    justify-content: flex-end;
-  margin-top:30px;
-  border: 1px solid;
+    justify-content: space-between;
+    align-items: start;
+  margin-top:20px;
+  margin-bottom: 20px;
+  
   }
   
   .m-btn {
@@ -66,7 +68,7 @@
   .m-btn img {
     width: 60%; /* Ширина изображения */
     height: auto; /* Высота изображения будет автоматически подстраиваться */
-    border-radius: 50%; /* Округление углов для круглой иконки */
+    /* Округление углов для круглой иконки */
   }
   
   .m-overlay {
@@ -129,8 +131,8 @@
   
   @keyframes slideIn {
     from {
-      transform: translateY(100%);
-  opacity: 0.5;
+      
+  opacity: 1;
     }
     to {
       transform: translateY(0);
@@ -149,3 +151,18 @@
     }
   }
   
+  .record{
+    cursor: pointer; 
+    justify-content: start; 
+    
+   align-items: end;
+    display: flex;  
+    width: 280px;
+    margin-top: -100px;
+     
+  }
+  .record div{
+    font-size: 12px;
+     margin-right: 4px;
+     color: black;
+  }
