@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Dogyzen</title>
+  <title>Chipo Lino</title>
   <link rel="stylesheet" href="second.css">
   <link rel="stylesheet" href="coin.css">
   <link href="style/main.css" rel="stylesheet" type="text/css">
@@ -18,8 +18,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no, minimal-ui">
 </head>
 <body>
-  
-  <div class="container" >
+  <div id="loader-wrapper">
+    
+    <div>Loading...</div>
+</div>
+  <div class="container"  id="content">
  
     <div class="heading">
       <div class="user">
@@ -33,6 +36,12 @@
       <div class="scores-container">
         <div class="score-container" style="font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">0</div>
         
+        <div class="record" onclick="togglePopup(3)" style="position: absolute ; cursor: pointer; justify-content: center; display: flex;  width: 60%; margin-top: 10px;  " >
+          <p style="font-size: 10px; margin-right: 2px;  ">your record:</p>
+          <div class="best-number"></div> >
+          
+        </div>
+        
       </div>
     </div>
 
@@ -44,11 +53,12 @@
       <div class="game-message" >
         
         <div class="text" >
-         
+        
         </div>
-        <div class="lower" style="display: none;">
+        <div class="lower">
 	        <a class="keep-playing-button"></a>
           <a class="retry-button" >Try again</a>
+
         </div>
       </div>
       
@@ -87,7 +97,7 @@
     <div class="above-game">
       <a class="restart-button" id="game-button">New Game</a>
       <div id="timer-display" style="display: none;"></div>
-      <div id="attempts-display"></div>
+      <div id="attempts-display" style="display: none;"></div>
       <div id="timer"></div>
       <div id="timerValue"></div>
 
@@ -96,17 +106,14 @@
     <div class="m-container">
       <div class="m-btn-container">
         <button class="m-btn" onclick="togglePopup(1)">
-          <img src="not.jpg" alt="Изображение 1">
+          <img src="meta/ooo.png" alt="Изображение 1">
           referal
         </button>
         <button class="m-btn" onclick="togglePopup(2)">
-          <img src="not.jpg" alt="Изображение 2">
+          <img src="meta/stats.png" alt="Изображение 2">
           stats
         </button>
-        <button class="m-btn" onclick="togglePopup(3)">
-          <img src="not.jpg" alt="Изображение 3">
-          task
-        </button>
+        
       </div>
       <div class="m-overlay" id="m-overlay" onclick="closePopup()"></div>
       <div class="m-popup" id="m-popup">

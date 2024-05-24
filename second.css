@@ -1,46 +1,52 @@
-.above-buttons{
-    display: flex;
-    
-    width: 100%;
-    margin: 20px auto;
-    height: 60px;
-    justify-content: space-between;
-    align-items: center;
+#loader-wrapper {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #282c34;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #61dafb;
+  font-size: 1.5em;
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
 }
 
-.above-buttons div{
-    border: 1px solid;
-    height: 100%;
-    width: 19%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 7%;
-    background-color: rgba(255, 255, 255, 0.391);
-}
-.above-buttons p{
-    margin-bottom: 0;
-    font-size: 8px;
-    color: black;
-    
-}
-.above-buttons img{
-    margin-top: 10px;
-    width:60%;
 
+
+
+
+#content {
+  display: none;
+  text-align: center;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
 }
 
+#content.visible {
+  opacity: 1;
+}
+
+
+
+ 
 
 
   .m-btn-container {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
+  margin-top:30px;
+  border: 1px solid;
   }
   
   .m-btn {
     position: relative; /* Изменено на относительную позицию */
-    margin: 10px;
+    margin: 2px;
     padding: 10px;
     background-color: rgba(255, 255, 255, 0.5);
     color: #000000;
@@ -50,7 +56,7 @@
     cursor: pointer;
     outline: none; /* Убираем блик при фокусировке */
     width: 60px; /* Ширина кнопок */
-    height: 50px; /* Высота кнопок */
+    height: 60px; /* Высота кнопок */
     display: flex;
     flex-direction: column;
     align-items: center;

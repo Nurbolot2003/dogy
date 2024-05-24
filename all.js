@@ -130,8 +130,6 @@ GameManager.prototype.restart = function () {
   this.setup(false); // Pass false to indicate not to reset the score
 };
 
-
-
 GameManager.prototype.keepPlaying = function () {
   this.keepPlaying = true;
   this.actuator.continueGame();
@@ -163,6 +161,7 @@ GameManager.prototype.setup = function (resetScore = true) {
   }
 
   this.actuate();
+  this.updateBestNumberDisplay();
 };
 
 GameManager.prototype.addStartTiles = function () {
@@ -193,6 +192,8 @@ GameManager.prototype.actuate = function () {
     bestScore:  this.storageManager.getBestScore(),
     terminated: this.isGameTerminated()
   });
+
+  this.updateBestNumber();
 };
 
 GameManager.prototype.serialize = function () {
@@ -250,8 +251,8 @@ GameManager.prototype.move = function (direction) {
           self.grid.removeTile(tile);
 
           tile.updatePosition(positions.next);
-          let mergedvalue = merged.value / 10;
-          self.score += Math.fround(mergedvalue);
+          let mergedvalue = merged.value / 11;
+          self.score += Math.fround(mergedvalue)
 
           if (merged.value === 2048) self.won = true;
         } else {
@@ -348,6 +349,20 @@ GameManager.prototype.tileMatchesAvailable = function () {
 
 GameManager.prototype.positionsEqual = function (first, second) {
   return first.x === second.x && first.y === second.y;
+};
+
+GameManager.prototype.updateBestNumber = function () {
+  var highestTileValue = Math.max.apply(null, this.grid.cells.flat().map(tile => tile ? tile.value : 0));
+  var bestNumber = this.storageManager.getBestNumber();
+  if (highestTileValue > bestNumber) {
+    this.storageManager.setBestNumber(highestTileValue);
+    this.updateBestNumberDisplay();
+  }
+};
+
+GameManager.prototype.updateBestNumberDisplay = function () {
+  var bestNumber = this.storageManager.getBestNumber();
+  document.querySelector('.best-number').textContent = bestNumber;
 };
 
 function Grid(size, previousState) {
@@ -560,41 +575,59 @@ HTMLActuator.prototype.positionClass = function (position) {
 };
 
 HTMLActuator.prototype.updateScore = function (score) {
-  this.clearContainer(this.scoreContainer);
-
   if (score === null) {
     score = 0; // Set score to 0 if it's null
   }
 
   var difference = score - this.score;
-  this.score = score;
+  var start = this.score;
+  var end = score;
+  var self = this;
+  var duration = 500; // Duration of the animation in ms
+  var startTime = null;
 
-  this.scoreContainer.textContent = this.score;
+  function animateScore(timestamp) {
+    if (!startTime) startTime = timestamp;
+    var progress = timestamp - startTime;
+    var currentScore = Math.min(start + (progress / duration) * difference, end);
 
-  if (difference > 0) {
-    difference = difference.toFixed(2);
+    self.clearContainer(self.scoreContainer);
 
-    var addition = document.createElement("div");
-    addition.classList.add("score-addition");
-    addition.textContent = "+" + difference;
+    self.scoreContainer.textContent = currentScore.toFixed(2);
 
-    addition.style.marginTop = "100px";
-
-    this.scoreContainer.appendChild(addition);
+    if (progress < duration) {
+      window.requestAnimationFrame(animateScore);
+    } else {
+      self.score = score;
+      self.clearContainer(self.scoreContainer);
+      self.scoreContainer.textContent = self.score.toFixed(2);
+      var addition = document.createElement("div");
+      addition.classList.add("score-addition");
+      addition.textContent = "+" + difference.toFixed(2);
+      addition.style.marginTop = "100px";
+      self.scoreContainer.appendChild(addition);
+    }
   }
+
+  window.requestAnimationFrame(animateScore);
 };
+
+
+
 
 HTMLActuator.prototype.message = function (won) {
   var type    = won ? "game-won" : "game-over";
   var message = won ? "You win!" : "Game over!";
 
-  this.messageContainer.classList.add(type);
+  makeRound()
+
   this.messageContainer.getElementsByTagName("p")[0].textContent = message;
 };
 
 HTMLActuator.prototype.clearMessage = function () {
   this.messageContainer.classList.remove("game-won");
   this.messageContainer.classList.remove("game-over");
+  makeRectangular()
 };
 
 function KeyboardInputManager() {
@@ -722,6 +755,7 @@ KeyboardInputManager.prototype.listen = function () {
 
 KeyboardInputManager.prototype.restart = function (event) {
   event.preventDefault();
+ 
   this.emit("restart");
 };
 
@@ -758,6 +792,7 @@ window.fakeStorage = {
 
 function LocalStorageManager() {
   this.bestScoreKey     = "bestScore";
+  this.bestNumberKey    = "bestNumber";
   this.gameStateKey     = "gameState";
 
   var supported = this.localStorageSupported();
@@ -783,6 +818,14 @@ LocalStorageManager.prototype.getBestScore = function () {
 
 LocalStorageManager.prototype.setBestScore = function (score) {
   this.storage.setItem(this.bestScoreKey, score);
+};
+
+LocalStorageManager.prototype.getBestNumber = function () {
+  return this.storage.getItem(this.bestNumberKey) || 0;
+};
+
+LocalStorageManager.prototype.setBestNumber = function (number) {
+  this.storage.setItem(this.bestNumberKey, number);
 };
 
 LocalStorageManager.prototype.getGameState = function () {

@@ -1,22 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-  const tg = window.Telegram.WebApp;
-  
-  const user = tg.initDataUnsafe?.user;
-  
-  if (user) {
-      const userName = user.first_name 
-      const userLastName = user.last_name
-      const userPhotoUrl = user.photo_url;
-
-      // Update HTML elements with user data
-      document.querySelector('.user-name').innerText = userName;
-      document.querySelector('.last-name').innerText = userLastName;
-      document.querySelector('.userAvatar').src = userPhotoUrl;
-  } else {
-      // Handle the case when user information is not available
-      document.getElementById('user-name').innerText = 'User information not available';
-      document.getElementById('userAvatar').style.display = 'none';
-  }
+ 
 });
 
 
