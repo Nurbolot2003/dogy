@@ -20,40 +20,48 @@
 <body>
   <canvas id="firefliesCanvas" style="position: absolute;"></canvas>
   <div id="loader-wrapper">
-    
-    <div>Loading...</div>
+    <div class="loader">
+      <div class="loader-square"></div>
+      <div class="loader-square"></div>
+      <div class="loader-square"></div>
+      <div class="loader-square"></div>
+      <div class="loader-square"></div>
+      <div class="loader-square"></div>
+      <div class="loader-square"></div>
+      </div>
 </div>
   <div class="container"  id="content" >
     <label class="switch">
       <input type="checkbox" id="toggleSwitch">
       <span class="slider"></span>
 </label>
-    <div class="heading">
+    
       <div class="user">
         <img class="userAvatar" src="meta/not.jpg" alt="" >
         <div class="for-flex">
           <h4 class="user-name">Nurbolot</h3>
           <h4 class="last-name">Namazbekov</h3>
-            
+
+        
         </div>
       </div>
       <div class="scores-container">
+        <img src="meta/coingold.png" alt="" style="width: 40px; border-radius: 50%;">
         <div class="score-container" style="font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">0</div>
-       
-        
-        
+
       </div>
-    </div>
+
 
     
    <div class="record" onclick="togglePopup(3)" >
-    <div>best:</div>
+    <div id="message" style="color: antiquewhite; font-family: Verdana, sans-serif;">Best:</div>
 
-    <div class="best-number"></div> 
-    
+    <div class="best-number" style="color: aliceblue;font-family: Verdana"></div> 
+   <!-- Add this line -->
+   <span id="counter">0</span>
   </div>
 
-    <div class="game-container" id="game-container">
+    <div class="game-container" id="game-container"> 
       <div class="coin" id="coin" style="display: none;"></div>
       <div class="game-message" >
         
@@ -103,8 +111,8 @@
       
       <div id="timer-display" style="display: none;"></div>
       <div id="attempts-display" style="display: none;"></div>
-      <div id="timer"></div>
-      <div id="timerValue"></div>
+      <div id="time-left"></div>
+   
 
     </div>
 
@@ -118,7 +126,8 @@
           <img src="meta/stats.png" alt="Изображение 2">
           stats
         </button>
-        <a class="restart-button" id="game-button">New Game</a>
+        <button id="counterButton" onclick="decreaseCounter()">start</button>
+        <p id="timer" style="display: none;"><span id="timeLeft"></span></p>
       </div>
       <div class="m-overlay" id="m-overlay" onclick="closePopup()"></div>
       <div class="m-popup" id="m-popup">
@@ -130,8 +139,10 @@
     </div>
   </div>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script src="last.js"></script>
 <script src="all.js"></script>
  <script src="second.js"></script>
+
  <script src="buttons.js"></script>
 </body>
 </html>

@@ -1,3 +1,5 @@
+
+
 (function () {
   var lastTime = 0;
   var vendors = ['webkit', 'moz'];
@@ -698,7 +700,7 @@ KeyboardInputManager.prototype.listen = function () {
   });
 
   this.bindButtonPress(".retry-button", this.restart);
-  this.bindButtonPress(".restart-button", this.restart);
+  this.bindButtonPress("#counterButton", this.restart);
   this.bindButtonPress(".keep-playing-button", this.keepPlaying);
 
   var touchStartClientX, touchStartClientY;
@@ -757,6 +759,17 @@ KeyboardInputManager.prototype.restart = function (event) {
   event.preventDefault();
  
   this.emit("restart");
+  if (counter > 0) {
+    counter--;
+    counterDisplay.textContent = '`${counter} / 9`';
+    if (counter === 0) {
+        button.style.display = 'none';
+        message.style.display = 'block';
+        timer.style.display = 'block';
+        localStorage.setItem('messageDisplayed', 'true');
+    }
+    localStorage.setItem('counter', counter);
+}
 };
 
 KeyboardInputManager.prototype.keepPlaying = function (event) {
@@ -867,4 +880,4 @@ Tile.prototype.serialize = function () {
     },
     value: this.value
   };
-};
+}; 

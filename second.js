@@ -8,9 +8,10 @@ document.addEventListener("DOMContentLoaded", function() {
         loaderWrapper.style.display = "none";
         content.style.display = "block";
         content.classList.add("visible");
-    }, 1000); // 2000ms = 2 seconds
+    }, 1500); // 2000ms = 2 seconds
 });
   const tg = window.Telegram.WebApp;
+  toggleNotcoin()
 
   const user = tg.initDataUnsafe?.user;
 
@@ -22,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
   
       // Update HTML elements with user data
       document.querySelector('.user-name').innerText =`${userName} ${userLastName}` ;
-      document.querySelector('.last-name').innerText = userId;
+      document.querySelector('.last-name').innerText = `ID: ${userId}`;
 
       if (userPhotoUrl) {
           const userAvatar = document.querySelector('.userAvatar');
@@ -32,17 +33,11 @@ document.addEventListener("DOMContentLoaded", function() {
           document.querySelector('.userAvatar').src = 'meta/not.jpg';
       }
   } else {
-      // Handle the case when user information is not availabl
+      // Handle the case when user information is not available
       document.querySelector('.user-name').innerText ="name" ;
       document.querySelector('.last-name').innerText = 'userId';
-      
   }
   updateFromLocalStorage();
-  if (remainingTime > 0) {
-    startTimer();
-  } else {
-    gameButton.disabled = false;
-  }
 });
 
 window.addEventListener('beforeunload', function() {
@@ -51,20 +46,14 @@ window.addEventListener('beforeunload', function() {
 
 var gameContainer = document.getElementById("game-container");
 var gameButton = document.getElementById("game-button");
-var timerDisplay = document.getElementById("timer-display");
-var remainingTime = 0;
-var timerInterval;
-var lastClickTime = 0;
 const counterElement = document.getElementById('attempts-display');
 
 function saveToLocalStorage() {
   localStorage.setItem('counterValue', counterElement.textContent);
   localStorage.setItem('lastActiveTime', Date.now());
-  localStorage.setItem('remainingTime', remainingTime);
 }
 
 function makeRound() {
-  
   gameContainer.style.borderRadius = "100%";
   gameContainer.style.transition = "all 1s";
   gameContainer.style.overflow = "hidden";
@@ -72,14 +61,11 @@ function makeRound() {
   document.querySelector(".tile-container").style.display = "none";
   document.querySelector(".grid-container").style.display = "none";
   setTimeout(function() {
- 
     gameContainer.style.background = "none";
   }, 400);
   setTimeout(function() {
     document.querySelector(".coin").style.display = "flex"; 
-    
   }, 600);
-
 }
 
 function makeRectangular() {
@@ -92,27 +78,19 @@ function makeRectangular() {
 }
 
 function updateFromLocalStorage() {
-  if (localStorage.getItem("remainingTime")) {
-    var savedTime = parseInt(localStorage.getItem("lastActiveTime"));
-    var elapsedTime = Math.floor((Date.now() - savedTime) / 1000);
-    remainingTime = parseInt(localStorage.getItem("remainingTime")) - elapsedTime;
-    if (remainingTime < 0) remainingTime = 0;
-  }
   var savedCounter = parseInt(localStorage.getItem('counterValue')) || 9;
   updateCounter(savedCounter);
 }
 
 function resetClickCount() {
-  clearInterval(timerInterval);
   gameButton.disabled = false;
   gameButton.textContent = "New Game";
   gameButton.style.display = "block";
-  timerDisplay.style.display = "none";
   localStorage.removeItem("lastClickTime");
-  localStorage.removeItem("remainingTime");
   localStorage.removeItem('counterValue');
   updateCounter(9)
 }
+
 function updateCounter(value) {
   counterElement.textContent = `${value}/9`;
   localStorage.setItem('counterValue', value);
@@ -124,52 +102,6 @@ function handleRestartClick() {
   updateCounter(counterValue);
 }
 
-function startTimer() {
-  makeRound();
-  gameButton.style.display = "none";
-  timerDisplay.style.display = "block";
-  gameButton.disabled = true;
-  timerInterval = setInterval(function () {
-    remainingTime--;
-    if (remainingTime <= 0) {
-      resetClickCount();
-    } else {
-      timerDisplay.textContent = formatTime(remainingTime);
-      saveToLocalStorage();
-    }
-  }, 1000);
-}
-
-function formatTime(timeInSeconds) {
-  var minutes = Math.floor(timeInSeconds / 60);
-  var seconds = timeInSeconds % 60;
-  return `${pad(minutes, 2)}:${pad(seconds, 2)}`;
-}
-
-function pad(number, length) {
-  return number.toString().padStart(length, '0');
-}
-
-
-
-/*gameButton.addEventListener("click", function () {
-  var clickCounter = parseInt(localStorage.getItem('counterValue')) || 9;
-  var now = Date.now();
-  if (now - lastClickTime >= 1800000) {
-    makeRectangular();
-  }
-  if (now - lastClickTime < 1800000 && clickCounter <= 0) {
-    remainingTime = 1800 - Math.floor((now - lastClickTime) / 1000);
-    startTimer();
-  } else {
-    lastClickTime = now;
-    
-  }
-});
-
-if (remainingTime > 0) {
-  startTimer();
-}*/
 const canvas = document.getElementById('firefliesCanvas');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
@@ -190,8 +122,8 @@ class Firefly {
     }
 
     update() {
-        this.x += this.speedX/3;
-        this.y += this.speedY /3;
+        this.x += this.speedX / 3;
+        this.y += this.speedY / 3;
 
         if (this.x > canvas.width || this.x < 0 || this.y > canvas.height || this.y < 0) {
             this.reset();
@@ -229,15 +161,15 @@ window.addEventListener('resize', () => {
     canvas.height = window.innerHeight;
 });
 
+function toggleNotcoin(){
+  document.getElementById('toggleSwitch').addEventListener('change', function() {
+    if (this.checked) {
+        document.body.style.backgroundImage = 'url("../meta/main_bg.png")';
+        document.body.style.transition = 'all 1s'
+    } else {
+        document.body.style.background = 'black';
+    }
+  });
+}
 
-
-
-
-
-document.getElementById('toggleSwitch').addEventListener('change', function() {
-  if (this.checked) {
-      document.body.style.backgroundImage = 'url("../meta/main_bg.png")';
-  } else {
-      document.body.style.background = 'black';
-  }
-});
+toggleNotcoin();
