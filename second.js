@@ -165,7 +165,7 @@ function toggleNotcoin(){
   document.getElementById('toggleSwitch').addEventListener('change', function() {
     if (this.checked) {
         document.body.style.backgroundImage = 'url("../meta/main_bg.png")';
-        document.body.style.transition = 'all 1s'
+        document.body.style.backgroundRepeat = 'no-repeat'
     } else {
         document.body.style.background = 'black';
     }
