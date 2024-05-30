@@ -1,5 +1,5 @@
-let counter = 92;
-const maxClicksPerDay = 98;
+let counter = 9;
+const maxClicksPerDay = 9;
 const button = document.getElementById('counterButton');
 const counterDisplay = document.getElementById('counter');
 const message = document.getElementById('message');

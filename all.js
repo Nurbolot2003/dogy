@@ -761,7 +761,7 @@ KeyboardInputManager.prototype.restart = function (event) {
   this.emit("restart");
   if (counter > 0) {
     counter--;
-    counterDisplay.textContent = '`${counter} / 9`';
+    counterDisplay.textContent = `${counter}/9`;
     if (counter === 0) {
         button.style.display = 'none';
         message.style.display = 'block';
