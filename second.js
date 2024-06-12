@@ -20,7 +20,24 @@ document.addEventListener("DOMContentLoaded", function() {
       const userLastName = user.last_name;
       const userPhotoUrl = user.photo_url;
       const userId = user.id;
-      localStorage.setItem('telegram_id', userId);
+      try {
+        const response = fetch(`https://myserver-4sii.onrender.com/referrals/${telegramId}`);
+        if (!response.ok) {
+          throw new Error('Network response was not ok ' + response.statusText);
+        }
+        const data = response.json();
+        
+        const referralContent = document.getElementById('referals');
+        const referralCodeContent = document.getElementById('referalCode');
+        referralContent.innerHTML = `
+          <p>Количество приглашенных пользователей: ${data.invited_users_count}</p>
+        `;
+        referralCodeContent.innerHTML = `
+          <p>Реферальный код: ${data.referral_code}</p>
+        `;
+      } catch (error) {
+        console.error('Ошибка при получении данных:', error);
+      }   
 
       // Update HTML elements with user data
       document.querySelector('.user-name').innerText =`${userName} ${userLastName}` ;
