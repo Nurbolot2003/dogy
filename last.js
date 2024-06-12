@@ -16,7 +16,7 @@ function updateTimer() {
     const hours = Math.floor(timeDiff / 1000 / 60 / 60);
     const minutes = Math.floor((timeDiff / 1000 / 60) % 60);
     const seconds = Math.floor((timeDiff / 1000) % 60);
-    timeLeftDisplay.textContent = `${hours}: ${minutes}: ${seconds}`;
+    timeLeftDisplay.textContent = `${hours}h ${minutes}m ${seconds}s`;
 
     if (timeDiff <= 0) {
         resetCounter();

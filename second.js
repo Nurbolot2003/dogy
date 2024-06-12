@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
         loaderWrapper.style.display = "none";
         content.style.display = "block";
         content.classList.add("visible");
-    }, 1500); // 2000ms = 2 seconds
+    }, getRandomNumber()); // 2000ms = 2 seconds
 });
   const tg = window.Telegram.WebApp;
   toggleNotcoin()
@@ -20,7 +20,8 @@ document.addEventListener("DOMContentLoaded", function() {
       const userLastName = user.last_name;
       const userPhotoUrl = user.photo_url;
       const userId = user.id;
-  
+      localStorage.setItem('telegram_id', userId);
+
       // Update HTML elements with user data
       document.querySelector('.user-name').innerText =`${userName} ${userLastName}` ;
       document.querySelector('.last-name').innerText = `ID: ${userId}`;

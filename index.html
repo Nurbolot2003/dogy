@@ -20,16 +20,12 @@
 <body>
   <canvas id="firefliesCanvas" style="position: absolute;"></canvas>
   <div id="loader-wrapper">
-    <div class="loader">
-      <div class="loader-square"></div>
-      <div class="loader-square"></div>
-      <div class="loader-square"></div>
-      <div class="loader-square"></div>
-      <div class="loader-square"></div>
-      <div class="loader-square"></div>
-      <div class="loader-square"></div>
-      </div>
-</div>
+    <div id="loader">
+      <div class="inner one"></div>
+      <div class="inner two"></div>
+      <div class="inner three"></div>
+    </div>
+  </div>
   <div class="container"  id="content" >
     <label class="switch">
       <input type="checkbox" id="toggleSwitch">
@@ -54,7 +50,7 @@
 
     
    <div class="record" onclick="togglePopup(3)" >
-    <div id="message" style="color: antiquewhite; font-family: Verdana, sans-serif;font-weight: 700;font-size: 14px;">Best:</div>
+    <img id="message" src="meta/kubok.png">
 
     <div class="best-number" style="color: aliceblue;font-family: Verdana; font-weight: 700;font-size: 15px;"></div> 
    <!-- Add this line -->
@@ -118,11 +114,11 @@
 
     <div class="m-container">
       <div class="m-btn-container">
-        <button class="m-btn" onclick="togglePopup(1)">
+        <button class="m-btn" onclick="togglePopup('My referals')">
           <img src="meta/ooo.png" alt="Изображение 1">
           referal
         </button>
-        <button class="m-btn" onclick="togglePopup(2)">
+        <button class="m-btn" onclick="togglePopup('Stats')">
           <img src="meta/stats.png" alt="Изображение 2">
           stats
         </button>
@@ -131,7 +127,14 @@
       </div>
       <div class="m-overlay" id="m-overlay" onclick="closePopup()"></div>
       <div class="m-popup" id="m-popup">
+        <div id="loader2" style="position: absolute;z-index: 10;">
+          <div class="inner one"></div>
+          <div class="inner two"></div>
+          <div class="inner three"></div>
+        </div>
+        
         <div class="m-content" id="m-content">
+
           <!-- Текст будет добавлен динамически -->
         </div>
         <div class="m-close-btn" onclick="closePopup()">&larr; Назад</div>
