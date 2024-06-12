@@ -16,18 +16,20 @@ function getRandomNumber(min = 400, max = 2000) {
 function togglePopup(index) {
   popup.classList.add('m-popup-open');
   popup.classList.remove('m-popup-close');
-  setTimeout(() => {
-    document.querySelector('#loader2').style.display='none'
-  },1200)
+
   if(index===1){
     setTimeout(() => {
+       document.querySelector('#loader2').style.display='none'
      contentRefs.style.display = 'block'
     },1200)
     
     contentStats.style.display = 'none'
   }else if(index===2){
     contentRefs.style.display = 'none'
-    contentStats.style.display = 'block'
+
+    setTimeout(() => {
+      contentStats.style.display = 'block'
+     },1200)
   }
   
   
@@ -36,11 +38,5 @@ function togglePopup(index) {
 function closePopup(callback) {
   popup.classList.remove('m-popup-open');
   popup.classList.add('m-popup-close');
-  setTimeout(() => {
-    popup.style.display = 'none';
-    popup.classList.remove('m-popup-close');
-    if (callback) {
-      callback();
-    }
-  }, 300);
+  
 }

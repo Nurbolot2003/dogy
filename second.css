@@ -284,7 +284,7 @@
     position: relative;
     z-index: 3; /* Контент будет поверх всего */
     padding: 20px;
-    background-image: radial-gradient(circle farthest-corner at center, #1815d0 0%, #000000 150%);/* Фоновый цвет для страницы с текстом */
+    background:#070707 ;/* Фоновый цвет для страницы с текстом */
     border-radius: 10px;
     width: 100%;
     max-width: 600px; /* Максимальная ширина текстового блока */
@@ -346,13 +346,18 @@ input:checked + .slider:before {
   
   .m-close-btn {
     position: absolute;
-    top: 10px;
-    left: 10px;
+    top: 15px;
+    left: 25px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     cursor: pointer;
+    font-size: 21px;
     z-index: 21;
-    color: red;
-  }
-  
+    color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;  }
+    .m-close-btn img{
+      width: 28px;
+    }
   .m-popup-open {
     display: flex;
     opacity: 1;

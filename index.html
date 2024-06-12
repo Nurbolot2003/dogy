@@ -42,7 +42,7 @@
         </div>
       </div>
       <div class="scores-container">
-        <img src="meta/coingold.png" alt="" style="width: 40px; border-radius: 50%;">
+        <img src="meta/upscaled_image.png" alt="" style="width: 26px;border: 3px solid rgb(162, 162, 162); border-radius: 50%;margin-right: 3px;">
         <div class="score-container" style="font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">0</div>
 
       </div>
@@ -114,11 +114,11 @@
 
     <div class="m-container">
       <div class="m-btn-container">
-        <button class="m-btn" onclick="togglePopup('My referals')">
+        <button class="m-btn" onclick="togglePopup(1)">
           <img src="meta/ooo.png" alt="Изображение 1">
           referal
         </button>
-        <button class="m-btn" onclick="togglePopup('Stats')">
+        <button class="m-btn" onclick="togglePopup(2)">
           <img src="meta/stats.png" alt="Изображение 2">
           stats
         </button>
@@ -135,9 +135,23 @@
         
         <div class="m-content" id="m-content">
 
-          <!-- Текст будет добавлен динамически -->
+          <div id="m-contentRefs" style="display: none;">
+          
+            <h2>refs</h2>
+            <div id="referals"></div>
+            <div id="referalCode"></div>s
+            </div>
+
+          <div id="m-contentStats">
+          <div id="totalBalance"></div>
+          <div id="totalUsers"></div>
+          <div id="onlineUsers">900</div>
+          <h2>stats</h2>
+          </div>
+          
         </div>
-        <div class="m-close-btn" onclick="closePopup()">&larr; Назад</div>
+        
+        <div class="m-close-btn" onclick="closePopup()"><img src="meta/icons8-стрелка-назад-96.png" alt="">Back</div>
       </div>
     </div>
   </div>
@@ -145,7 +159,7 @@
   <script src="last.js"></script>
 <script src="all.js"></script>
  <script src="second.js"></script>
-
+<script src="fetch.js"></script>
  <script src="buttons.js"></script>
 </body>
 </html>
