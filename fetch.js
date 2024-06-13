@@ -1,9 +1,9 @@
 document.getElementById('m-btn').addEventListener('click', async () => {
-    const tgg = window.Telegram.WebApp;
-    const userg = tgg.initDataUnsafe?.user;
+    
+    const tg2 = window.Telegram.WebApp;
   
-    const telegramId = userg.id;
-  
+    const telegramId = localStorage.getItem('telegram_id') || user2.id;
+    const user2 = tg2.initDataUnsafe?.user;
     if (!telegramId) {
       alert('No telegram_id found in local storage.');
       return;
