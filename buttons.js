@@ -18,6 +18,7 @@ function togglePopup(index) {
   popup.classList.remove('m-popup-close');
 
   if(index===1){
+    
     setTimeout(() => {
        document.querySelector('#loader2').style.display='none'
      contentRefs.style.display = 'block'
