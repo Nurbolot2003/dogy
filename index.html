@@ -43,7 +43,7 @@
       </div>
       <div class="scores-container">
         <img src="meta/upscaled_image.png" alt="" style="width: 26px;border: 3px solid rgb(162, 162, 162); border-radius: 50%;margin-right: 3px;">
-        <div class="score-container" style="font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">0</div>
+        <div class="score-container" style="font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"></div>
 
       </div>
 
@@ -114,11 +114,11 @@
 
     <div class="m-container">
       <div class="m-btn-container">
-        <button class="m-btn" id="m-btn" onclick="togglePopup(1)">
-          <img src="meta/ooo.png" alt="Изображение 1">
+        <button class="m-btn" id="m-btn" onclick="toggleRefs()">
+          <img src="meta/ooo.png" alt="Изображение 1" class="ooo">
           referal
         </button>
-        <button class="m-btn" onclick="togglePopup(2)">
+        <button class="m-btn" id="m-btn" onclick="toggleStats()">
           <img src="meta/stats.png" alt="Изображение 2">
           stats
         </button>
@@ -127,6 +127,7 @@
       </div>
       <div class="m-overlay" id="m-overlay" onclick="closePopup()"></div>
       <div class="m-popup" id="m-popup">
+        
         <div id="loader2" style="position: absolute;z-index: 10;">
           <div class="inner one"></div>
           <div class="inner two"></div>
@@ -135,18 +136,21 @@
         
         <div class="m-content" id="m-content">
 
-          <div id="m-contentRefs" style="display: none;">
-          
-            <h2>refs</h2>
-            <div id="referals" style="color: rgb(255, 0, 0);"></div>
-            <div id="referalCode"></div>
+          <div id="m-contentRefs">
+            <div class="refInfo">
+              1 friend = 35000 $PTON
+              
             </div>
+            <div class="ref"><span>Your invited friends:&nbsp;</span><div id="referals"></div></div>
+            <div class="refC"><span>Your invite link:&nbsp;</span><div id="referalCode"></div></div>
+            <button id="copyRef">Copy</button>
+          </div>
 
           <div id="m-contentStats">
-          <div id="totalBalance"></div>
-          <div id="totalUsers"></div>
-          <div id="onlineUsers">900</div>
-          <h2>stats</h2>
+            
+            <div class="totalB"><span>Total Balance:&nbsp;</span><div class="for-flex67"><img src="meta/upscaled_image.png" alt=""><div id="totalBalance"></div></div></div>
+            <div class="totalU"><span>Total Users:&nbsp;</span><div id="totalUsers"></div></div>
+            <div class="onlineU"><span>online:&nbsp;&nbsp;</span><div id="onlineUsers"></div><div class="online-indicator"></div></div>
           </div>
           
         </div>
@@ -155,6 +159,7 @@
       </div>
     </div>
   </div>
+ 
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <script src="last.js"></script>
 <script src="all.js"></script>

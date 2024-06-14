@@ -1,6 +1,7 @@
 
 
 (function () {
+  
   var lastTime = 0;
   var vendors = ['webkit', 'moz'];
   for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
@@ -596,13 +597,13 @@ HTMLActuator.prototype.updateScore = function (score) {
     self.clearContainer(self.scoreContainer);
 
     self.scoreContainer.textContent = currentScore.toFixed(2);
-
+    localStorage.setItem('userScore', currentScore.toFixed(2) )
     if (progress < duration) {
       window.requestAnimationFrame(animateScore);
     } else {
       self.score = score;
       self.clearContainer(self.scoreContainer);
-      self.scoreContainer.textContent = self.score.toFixed(2);
+      self.scoreContainer.textContent = self.score.toLocaleString('en-US');
       var addition = document.createElement("div");
       addition.classList.add("score-addition");
       addition.textContent = "+" + difference.toFixed(2);
@@ -623,7 +624,7 @@ HTMLActuator.prototype.message = function (won) {
 
   makeRound()
 
-  this.messageContainer.getElementsByTagName("p")[0].textContent = message;
+  
 };
 
 HTMLActuator.prototype.clearMessage = function () {
@@ -827,6 +828,7 @@ LocalStorageManager.prototype.localStorageSupported = function () {
 
 LocalStorageManager.prototype.getBestScore = function () {
   return this.storage.getItem(this.bestScoreKey) || 0;
+  
 };
 
 LocalStorageManager.prototype.setBestScore = function (score) {

@@ -4,7 +4,7 @@
 html, body {
   margin: 0;
   padding: 0;
-  
+ 
   background-repeat: no-repeat;
   background-size: cover; /* Сохраняет соотношение сторон и заполняет элемент фоновым изображением */
  
@@ -19,7 +19,7 @@ body{
 }
  
   
- 
+
 .user{
   
 position: absolute;
@@ -40,7 +40,9 @@ left: 0;
 }
 
 
+
 .user-name{
+  
  margin-bottom: 0;
   color: #ffffff;
   font-family: sans-serif;

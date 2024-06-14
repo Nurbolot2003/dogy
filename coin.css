@@ -1,7 +1,7 @@
 :root {
     --face: #be9d66;
     --lowlight: #1111118a;
-    --side: #896c3b;
+    --side: #323232;
     --side-dark: #120e08a0;
     --coin-size: 90%;
     --coin-face: '';
@@ -39,7 +39,7 @@
     border-radius: 50%;
     background-color: var(--face);
     animation: spin 2s linear infinite;
-    background:url('onion\ .png');
+    background:url('meta/upscaled_image.png');
     z-index: 800;
     position: absolute;
     
