@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
   window.addEventListener("load", function() {
     var loaderWrapper = document.getElementById("loader-wrapper");
     var content = document.getElementById("content");
-    updateFromLocalStorage();
+
     // Minimum loading time of 2 seconds
     setTimeout(function() {
         loaderWrapper.style.display = "none";
@@ -10,7 +10,35 @@ document.addEventListener("DOMContentLoaded", function() {
         content.classList.add("visible");
     }, getRandomNumber()); // 2000ms = 2 seconds
 });
-  
+  const tg = window.Telegram.WebApp;
+  toggleNotcoin()
+
+  const user = tg.initDataUnsafe?.user;
+
+  if (user) {
+      const userName = user.first_name;
+      const userLastName = user.last_name;
+      const userPhotoUrl = user.photo_url;
+      const userId = user.id;
+      localStorage.setItem('telegram_id', userId);
+
+      // Update HTML elements with user data
+      document.querySelector('.user-name').innerText =`${userName} ${userLastName}` ;
+      document.querySelector('.last-name').innerText = `ID: ${userId}`;
+
+      if (userPhotoUrl) {
+          const userAvatar = document.querySelector('.userAvatar');
+          userAvatar.src = userPhotoUrl;
+          userAvatar.style.display = 'block';
+      } else {
+          document.querySelector('.userAvatar').src = 'meta/not.jpg';
+      }
+  } else {
+      // Handle the case when user information is not available
+      document.querySelector('.user-name').innerText ="name" ;
+      document.querySelector('.last-name').innerText = 'userId';
+  }
+  updateFromLocalStorage();
 });
 
 window.addEventListener('beforeunload', function() {
@@ -147,5 +175,3 @@ function toggleNotcoin(){
 }
 
 toggleNotcoin();
-
-
