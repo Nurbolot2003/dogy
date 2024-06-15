@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Chipo Lino</title>
+  <title>Don Pepe</title>
   <link rel="stylesheet" href="second.css">
   <link rel="stylesheet" href="coin.css">
   <link href="style/main.css" rel="stylesheet" type="text/css">
@@ -20,13 +20,21 @@
 <body>
   <canvas id="firefliesCanvas" style="position: absolute;"></canvas>
   <div id="loader-wrapper">
-    <div id="loader">
-      <div class="inner one"></div>
-      <div class="inner two"></div>
-      <div class="inner three"></div>
+    <div class="loader">
+      <div class="loader-square"></div>
+      <div class="loader-square"></div>
+      <div class="loader-square"></div>
+      <div class="loader-square"></div>
+      <div class="loader-square"></div>
+      <div class="loader-square"></div>
+      <div class="loader-square"></div>
+      <div class="loader-square"></div>
+      <div class="loader-square"></div>
     </div>
   </div>
   <div class="container"  id="content" >
+    <audio id="audioPlayer" loop src="meta/music.mp3" style="display: block;"></audio>
+
     <label class="switch">
       <input type="checkbox" id="toggleSwitch">
       <span class="slider"></span>
@@ -42,7 +50,7 @@
         </div>
       </div>
       <div class="scores-container">
-        <img src="meta/upscaled_image.png" alt="" style="width: 26px;border: 3px solid rgb(162, 162, 162); border-radius: 50%;margin-right: 3px;">
+        <img src="meta/upscaled_image.png" alt="" style="width: 26px; border-radius: 50%;margin-right: 3px;">
         <div class="score-container" style="font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"></div>
 
       </div>
@@ -135,10 +143,11 @@
         </div>
         
         <div class="m-content" id="m-content">
-
+          <canvas id="particleCanvas" style="position: absolute;"></canvas>
           <div id="m-contentRefs">
+            
             <div class="refInfo">
-              1 friend = 35000 $PTON
+              1 friend = 35000 $DON
               
             </div>
             <div class="ref"><span>Your invited friends:&nbsp;</span><div id="referals"></div></div>
@@ -165,6 +174,7 @@
 <script src="all.js"></script>
  <script src="second.js"></script>
 <script src="fetch.js"></script>
+<script src="part.js"></script>
  <script src="buttons.js"></script>
 </body>
 </html>
