@@ -22,12 +22,12 @@ document.addEventListener("DOMContentLoaded", async () => {
        ${referralsData.invited_users_count}
       `;
       referralCodeContent.innerHTML = `
-        https://t.me/https://t.me/don_pepe_bot?start=${referralsData.referral_code}
+        https://t.me/don_pepe_bot?start=${referralsData.referral_code}
       `;
       
 document.getElementById('copyRef').addEventListener('click', function() {
   const referralCode = `
-  https://t.me/https://t.me/don_pepe_bot?start=${referralsData.referral_code}
+  https://t.me/don_pepe_bot?start=${referralsData.referral_code}
 ` ;
 
   navigator.clipboard.writeText(referralCode).then(function() {
