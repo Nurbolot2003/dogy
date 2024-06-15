@@ -1,8 +1,9 @@
-document.addEventListener("DOMContentLoaded", async () => {
-  tgg = window.Telegram.WebApp;
+var tgg = window.Telegram.WebApp;
 
-  const userg = tgg.initDataUnsafe?.user;
-  let telegramId = userg.id;
+var userg = tgg.initDataUnsafe?.user;
+var telegramId = userg.id;
+document.addEventListener("DOMContentLoaded", async () => {
+ 
   
   if (!telegramId) {
     telegramId = localStorage.getItem('telegram_id');
@@ -80,10 +81,8 @@ navigator.clipboard.writeText(referralCode).then(function() {
     console.error('Ошибка при получении общего количества пользователей:', error);
   }
 });
-async function decreaseCounter(event) {
-  const tg2 = window.Telegram.WebApp;
-  const user2 = tg2.initDataUnsafe?.user;
-  let telegramId = 1230986495;
+async function decreaseCounter() {
+
 
   if (!telegramId) {
     telegramId = localStorage.getItem('telegram_id');
