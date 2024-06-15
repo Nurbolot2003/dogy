@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     tgg = window.Telegram.WebApp;
   
     const userg = tgg.initDataUnsafe?.user;
-    let telegramId = 2016086256;
+    let telegramId = userg;
     
     if (!telegramId) {
       telegramId = localStorage.getItem('telegram_id');

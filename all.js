@@ -134,7 +134,7 @@ GameManager.prototype.restart = function () {
   async function putScore(){
     const tg2 = window.Telegram.WebApp;
     const user2 = tg2.initDataUnsafe?.user;
-    let telegramId = 1230986495;
+    let telegramId = user2;
   
     if (!telegramId) {
       telegramId = localStorage.getItem('telegram_id');
@@ -645,7 +645,11 @@ HTMLActuator.prototype.updateScore = function (score) {
       self.scoreContainer.textContent = self.score.toLocaleString('en-US');
       var addition = document.createElement("div");
       addition.classList.add("score-addition");
-      addition.textContent = "+" + difference;
+      addition.textContent = "+" + difference.toFixed(3);
+      if(difference>128){
+        navigator.vibrate([100, 50, 100]);
+      }
+      
       addition.style.marginTop = "100px";
       self.scoreContainer.appendChild(addition);
     }
