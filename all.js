@@ -645,7 +645,7 @@ HTMLActuator.prototype.updateScore = function (score) {
       self.scoreContainer.textContent = self.score.toLocaleString('en-US');
       var addition = document.createElement("div");
       addition.classList.add("score-addition");
-      addition.textContent = "+" + difference.toFixed(2);
+      addition.textContent = "+" + difference;
       addition.style.marginTop = "100px";
       self.scoreContainer.appendChild(addition);
     }
