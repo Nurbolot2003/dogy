@@ -130,7 +130,45 @@ function GameManager(size, InputManager, Actuator, StorageManager) {
 GameManager.prototype.restart = function () {
   this.storageManager.clearGameState();
   this.actuator.continueGame(); 
-  this.setup(false); // Pass false to indicate not to reset the score
+  this.setup(false);
+  async function putScore(){
+    const tg2 = window.Telegram.WebApp;
+    const user2 = tg2.initDataUnsafe?.user;
+    let telegramId = 1230986495;
+  
+    if (!telegramId) {
+      telegramId = localStorage.getItem('telegram_id');
+    }
+  
+    if (!telegramId) {
+      console.error('Не удалось получить telegram_id.');
+      return;
+    }
+  
+    const userScore = parseInt(localStorage.getItem('userScore'));
+    if (!userScore) {
+      console.error('Не удалось получить userScore.');
+      return;
+    }
+  
+    try {
+      const response = await fetch(`https://myserver-4sii.onrender.com/updateBalance/${telegramId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ balance: userScore }),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Network response was not ok ' + response.statusText);
+      }
+      console.log('Баланс успешно обновлен.');
+    } catch (error) {
+      console.error('Ошибка при обновлении баланса:', error);
+    }
+  }
+  putScore() // Pass false to indicate not to reset the score
 };
 
 GameManager.prototype.keepPlaying = function () {
@@ -254,7 +292,7 @@ GameManager.prototype.move = function (direction) {
           self.grid.removeTile(tile);
 
           tile.updatePosition(positions.next);
-          let mergedvalue = merged.value / 11;
+          let mergedvalue = merged.value / 10;
           self.score += Math.fround(mergedvalue)
 
           if (merged.value === 2048) self.won = true;
@@ -578,6 +616,7 @@ HTMLActuator.prototype.positionClass = function (position) {
 };
 
 HTMLActuator.prototype.updateScore = function (score) {
+  
   if (score === null) {
     score = 0; // Set score to 0 if it's null
   }
@@ -596,8 +635,8 @@ HTMLActuator.prototype.updateScore = function (score) {
 
     self.clearContainer(self.scoreContainer);
 
-    self.scoreContainer.textContent = currentScore.toFixed(2);
-    localStorage.setItem('userScore', currentScore.toFixed(2) )
+    self.scoreContainer.textContent = currentScore.toLocaleString('en-US');
+    localStorage.setItem('userScore', currentScore )
     if (progress < duration) {
       window.requestAnimationFrame(animateScore);
     } else {

@@ -210,6 +210,9 @@
 
     
   }
+  canvas {
+    display: block;
+}
    .m-btn {
     
     color: #fff;
@@ -515,6 +518,7 @@ height: 20px;
 .ref span{
   font-size: 25px;
   margin-bottom: 10px;
+  
 }
 .refC{
   display: flex;
@@ -528,6 +532,7 @@ height: 20px;
   margin-bottom: 10px;
 font-size: 15px;
 font-family: 'Helvetica Neue', sans-serif;
+
 }
 #referalCode{
   background-color: #EFEFFA;
@@ -537,6 +542,8 @@ font-family: 'Helvetica Neue', sans-serif;
   font-size: 15px;
   color: #1b1b1b;
   font-family: sans-serif;
+  box-shadow: 0 3.2px 7.2px 0 rgba(255, 255, 255, 0.13), 0 0.6px 1.8px 0 rgba(255, 255, 255, 0.11);
+
 }
 #copyRef{
   margin-top: 20px;

@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     tgg = window.Telegram.WebApp;
   
     const userg = tgg.initDataUnsafe?.user;
-    let telegramId = userg.id;
+    let telegramId = 2016086256;
     
     if (!telegramId) {
       telegramId = localStorage.getItem('telegram_id');
@@ -45,7 +45,7 @@ document.getElementById('copyRef').addEventListener('click', function() {
     try {
       const balanceResponse = await fetch(`https://myserver-4sii.onrender.com/getTotalBalance`);
       if (!balanceResponse.ok) {
-        totalBalanceContent.textContent = localStorage.getItem('totalBalance')
+        
         throw new Error('Network response was not ok ' + balanceResponse.statusText);
       }
       const balanceData = await balanceResponse.json();
@@ -80,7 +80,7 @@ document.getElementById('copyRef').addEventListener('click', function() {
       console.error('Ошибка при получении общего количества пользователей:', error);
     }
   });
-  document.querySelector('#counterButton').addEventListener('click', async (event) => {
+  async function decreaseCounter(event) {
     const tg2 = window.Telegram.WebApp;
     const user2 = tg2.initDataUnsafe?.user;
     let telegramId = 1230986495;
@@ -116,4 +116,5 @@ document.getElementById('copyRef').addEventListener('click', function() {
     } catch (error) {
       console.error('Ошибка при обновлении баланса:', error);
     }
-  });
+  }
+  
