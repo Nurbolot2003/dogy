@@ -293,7 +293,7 @@ GameManager.prototype.move = function (direction) {
 
           tile.updatePosition(positions.next);
           let mergedvalue = merged.value / 10;
-          self.score += Math.fround(mergedvalue)
+          self.score += Math.fround(mergedvalue);
 
           if (merged.value === 2048) self.won = true;
         } else {
@@ -315,7 +315,23 @@ GameManager.prototype.move = function (direction) {
     }
 
     this.actuate();
+
+    // Проверка наибольшего значения в сетке
+    if (this.getMaxTileValue() >= 128) {
+      navigator.vibrate([100, 50, 100]);
+    }
   }
+};
+
+// Метод для получения наибольшего значения тайла в сетке
+GameManager.prototype.getMaxTileValue = function () {
+  var maxTileValue = 0;
+  this.grid.eachCell(function (x, y, tile) {
+    if (tile && tile.value > maxTileValue) {
+      maxTileValue = tile.value;
+    }
+  });
+  return maxTileValue;
 };
 
 GameManager.prototype.getVector = function (direction) {
@@ -616,9 +632,8 @@ HTMLActuator.prototype.positionClass = function (position) {
 };
 
 HTMLActuator.prototype.updateScore = function (score) {
-  
   if (score === null) {
-    score = 0; // Set score to 0 if it's null
+    score = 0;
   }
 
   var difference = score - this.score;
@@ -636,7 +651,7 @@ HTMLActuator.prototype.updateScore = function (score) {
     self.clearContainer(self.scoreContainer);
 
     self.scoreContainer.textContent = currentScore.toLocaleString('en-US');
-    localStorage.setItem('userScore', currentScore )
+    localStorage.setItem('userScore', currentScore);
     if (progress < duration) {
       window.requestAnimationFrame(animateScore);
     } else {
@@ -646,17 +661,20 @@ HTMLActuator.prototype.updateScore = function (score) {
       var addition = document.createElement("div");
       addition.classList.add("score-addition");
       addition.textContent = "+" + difference.toFixed(3);
-      if(difference>128){
-        navigator.vibrate([100, 50, 100]);
-      }
-      
+
       addition.style.marginTop = "100px";
       self.scoreContainer.appendChild(addition);
     }
   }
 
   window.requestAnimationFrame(animateScore);
+
+  // Вызов вибрации, если текущее значение тайла больше или равно 128
+  if (this.score >= 128) {
+    navigator.vibrate([100, 50, 100]);
+  }
 };
+
 
 
 
