@@ -52,6 +52,9 @@ left: 0;
   color: #929292;
   font-family: sans-serif;
 }
+.user-name::first-letter {
+  text-transform: capitalize;
+}
 
 
 

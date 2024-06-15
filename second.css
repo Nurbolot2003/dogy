@@ -194,9 +194,9 @@
     position: relative; /* Изменено на относительную позицию */
     margin-right: 9px;
     padding: 10px;
-    background: rgba(23, 23, 23,.8);
+    background: rgba(20, 20, 20);
     color: #000000;
-    border: 1px black;
+    border: 1px rgb(255, 255, 255);
     
     border-radius: 5px;
     cursor: pointer;
