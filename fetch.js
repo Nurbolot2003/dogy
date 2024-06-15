@@ -5,9 +5,7 @@ var telegramId = userg.id;
 document.addEventListener("DOMContentLoaded", async () => {
  
   
-  if (!telegramId) {
-    telegramId = localStorage.getItem('telegram_id');
-  }
+ 
  
   try {
     const referralsResponse = await fetch(`https://myserver-4sii.onrender.com/referrals/${telegramId}`);
@@ -116,3 +114,4 @@ async function decreaseCounter() {
     console.error('Ошибка при обновлении баланса:', error);
   }
 }
+decreaseCounter()
