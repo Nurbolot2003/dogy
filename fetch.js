@@ -2,12 +2,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     tgg = window.Telegram.WebApp;
   
     const userg = tgg.initDataUnsafe?.user;
-    let telegramId = userg;
+    let telegramId = userg.id;
     
     if (!telegramId) {
       telegramId = localStorage.getItem('telegram_id');
     }
-  
+   
     try {
       const referralsResponse = await fetch(`https://myserver-4sii.onrender.com/referrals/${telegramId}`);
       if (!referralsResponse.ok) {
